@@ -58,6 +58,16 @@ public class SpliceResource {
 		return spliceService.updateSplice(splice);
 	}
 	
+	@DELETE 
+	public void removeAllSplices(){
+		 spliceService.removeAllSplices();
+	}
+	
+	@DELETE 
+	@Path("/delete/idFamily/{idFamily}")
+	public void removeAllSplicesByIdFamily(@PathParam("idFamily") int idFamily){
+		 spliceService.removeAllSplicesByIdFamily(idFamily);
+	}
 	
 	@DELETE 
 	public void removeSplice(Splice splice){
@@ -69,7 +79,13 @@ public class SpliceResource {
 	public void removeSplice(@PathParam("idSplice") int idSplice){
 		 spliceService.removeSplice(idSplice);
 	}
+	
 
+	@DELETE
+	@Path("/delete/idFamily/{idFamily}/nameSplice/{nameSplice}")
+	public void removeSplice(@PathParam("idFamily") int idFamily,@PathParam("nameSplice") String nameSplice){
+		 spliceService.removeSplice(idFamily,nameSplice);
 	}
+}
 	
 

@@ -32,6 +32,12 @@ public class WireResource {
 	}
 	
 	@GET
+	@Path("/search/idPartNumber/{idPartNumber}")
+	public List<Wire> getAllWiresByIdPartNumber(@PathParam("idPartNumber") int idPartNumber){
+		return wireService.getAllWiresByIdPartNumber(idPartNumber);
+	}
+	
+	@GET
 	@Path("/search/idFamily/{idFamily}/nameWire/{nameWire}")
 	public Wire getWireByNameWire(@PathParam("idFamily") int idFamily,@PathParam("nameWire") String nameWire){
 	return wireService.getWireByNameWire(idFamily,nameWire);
@@ -47,11 +53,22 @@ public class WireResource {
 	public Wire addWire(Wire wire){
 		return wireService.addWire(wire);
 	}
-
+	
+	@DELETE
+	public void removeAllWires(){
+		wireService.removeAllWires();
+	}
+	
 	@DELETE
 	@Path("/delete/idFamily/{idFamily}")
 	public void removeAllWirseByIdFamily(@PathParam("idFamily") int idFamily){
 		wireService.removeAllWiresByIdFamily(idFamily);
+	}
+	
+	@DELETE
+	@Path("/delete/idPartNumber/{idPartNumber}")
+	public void removeAllWirseByIdPartNumber(@PathParam("idPartNumber") int idPartNumber){
+		wireService.removeAllWiresByIdPartNumber(idPartNumber);
 	}
 	
 	@DELETE 
@@ -60,16 +77,16 @@ public class WireResource {
 	}
 
 	@DELETE 
-	@Path("/delete/idFamily/{idFamily}/nameWire/{nameWire}")
-	public void removeWireByNameWire(@PathParam("idFamily") int idFamily,@PathParam("nameWire") String nameWire){
-		 wireService.removeWireByNameWire(idFamily,nameWire);
-	}	
-
-	@DELETE 
 	@Path("/delete/idWire/{idWire}")
 	public void removeWire(@PathParam("idWire") int idWire){
 		 wireService.removeWire(idWire);
 	}
+	
+	@DELETE 
+	@Path("/delete/idFamily/{idFamily}/nameWire/{nameWire}")
+	public void removeWire(@PathParam("idFamily") int idFamily,@PathParam("nameWire") String nameWire){
+		 wireService.removeWire(idFamily,nameWire);
+	}	
 
 }
 	

@@ -21,15 +21,26 @@ public class FixtureResource {
 	private FixtureService fixtureService = new FixtureService();
 	
 	@GET
-	public List<Fixture> getAllFixture(){
-		return fixtureService.getAllFixture();
+	public List<Fixture> getAllFixtures(){
+		return fixtureService.getAllFixtures();
 	}
-	
 
 	@GET
-	@Path("/{fixtureName}")
-	public Fixture getFixture(@PathParam("fixtureName") String fixtureName){
-	return fixtureService.getFixture(fixtureName);
+	@Path("/search/idFamily/{idFamily}")
+	public List<Fixture> getAllFixturesByIdFamily(@PathParam("idFamily") int idFamily){
+	return fixtureService.getAllFixturesByIdFamily(idFamily);
+	}
+	
+	@GET
+	@Path("/search/idFixture/{idFixture}")
+	public Fixture getFixture(@PathParam("idFixture") int idFixture){
+	return fixtureService.getFixture(idFixture);
+	}
+	
+	@GET
+	@Path("/search/idFamily/{idFamily}/nameFixture/{nameFixture}")
+	public Fixture getFixtureByNameFixture(@PathParam("idFamily") int idFamily,@PathParam("nameFixture") String nameFixture){
+	return fixtureService.getFixtureByNameFixture(idFamily,nameFixture);
 	}
 	
 	@POST
@@ -37,19 +48,28 @@ public class FixtureResource {
 		return fixtureService.addFixture(fixture);
 	}
 	
-	@PUT 
-	@Path("/{fixtureName}")
-	public Fixture updateFixture(@PathParam("fixtureName") String fixtureName,Fixture fixture){
-	//	fixture.setFixtureName(fixtureName);
-		return fixtureService.updateFixture(fixture);
+	@DELETE
+	public void removeAllFixtures(){
+	 fixtureService.removeAllFixtures();
 	}
 	
+	@DELETE
+	@Path("/search/idFamily/{idFamily}")
+	public void removeAllFixturesByIdFamily(@PathParam("idFamily") int idFamily){
+	 fixtureService.removeAllFixturesByIdFamily(idFamily);
+	}
+
 	@DELETE 
-	@Path("/{fixtureName}")
-	public void removeFixture(@PathParam("fixtureName") String fixtureName){
-		 fixtureService.removeFixture(fixtureName);
+	@Path("/delete/idFixture/{idFixture}")
+	public void removeFixture(@PathParam("idFixture") int idFixture){
+		 fixtureService.removeFixture(idFixture);
 	}
 
+	@DELETE 
+	@Path("/delete/idFamily/{idFamily}/nameFixture/{nameFixture}")
+	public void removeFixture(@PathParam("idFamily") int idFamily,@PathParam("nameFixture") String nameFixture){
+		 fixtureService.removeFixture(idFamily,nameFixture);
 	}
 	
-
+	
+}

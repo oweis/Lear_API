@@ -1,5 +1,7 @@
 package org.oweis.Lear_API.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,12 +20,21 @@ public class PartNumber {
 	private String level;
 	private String date;
 	private String extra;
+	private Date date_creation = new Date();
 	
 	
 	public PartNumber() {
 	
 	}
 	
+	public Date getDate_creation() {
+		return date_creation;
+	}
+
+	public void setDate_creation(Date date_creation) {
+		this.date_creation = date_creation;
+	}
+
 	public PartNumber(int id,int idFamily, String nameUsedInLear, String nameUsedInClient,
 			String level, String date, String extra) {
 		

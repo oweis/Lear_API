@@ -12,21 +12,27 @@ public class Fixture {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	private int idFamily;
 	private String name;
-	private String drawing = "";
-	private String size;
+	private String drawing;
 	
-
 	public Fixture() {
 		
 	}
 	
-	public Fixture(int id, String name, String drawing, String size) {
-		super();
+	public Fixture(int id,int idFamily, String name, String drawing) {
 		this.id = id;
+		this.idFamily = idFamily;
 		this.name = name;
 		this.drawing = drawing;
-		this.size = size;
+	}
+	
+	public int getIdFamily() {
+		return idFamily;
+	}
+
+	public void setIdFamily(int idFamily) {
+		this.idFamily = idFamily;
 	}
 
 	public int getId() {
@@ -51,14 +57,6 @@ public class Fixture {
 
 	public void setDrawing(String drawing) {
 		this.drawing = drawing;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
 	}
 
 }

@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.oweis.Lear_API.model.Wire;
 
@@ -25,7 +26,10 @@ public class WireService {
 		wires =  new ArrayList<>();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		criteria = session.createCriteria(Wire.class);
+
+		criteria = session.createCriteria(Wire.class).
+				addOrder(Order.desc("date_creation"));
+
 		wires = (ArrayList<Wire>) criteria.list();
 		return wires;
 	}
@@ -35,7 +39,26 @@ public class WireService {
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		criteria = session.createCriteria(Wire.class).add(Restrictions.eq("idFamily", idFamily));
+		criteria = session.createCriteria(Wire.class).
+				add(Restrictions.eq("idFamily", idFamily)).
+				addOrder(Order.desc("date_creation"));
+		
+		wires = (ArrayList<Wire>) criteria.list();
+		
+		session.getTransaction().commit();
+		session.close();
+		return wires;
+	}
+	
+	public ArrayList<Wire> getAllWiresByIdPartNumber(int idPartNumber){
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		criteria = session.createCriteria(Wire.class).
+				add(Restrictions.eq("idPartNumber", idPartNumber)).
+				addOrder(Order.desc("date_creation"));
+		
 		wires = (ArrayList<Wire>) criteria.list();
 		
 		session.getTransaction().commit();
@@ -61,8 +84,11 @@ public class WireService {
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		criteria = session.createCriteria(Wire.class).add(Restrictions.eq("idFamily", idFamily)).add(Restrictions.eq("nameWire",nameWire));
+		criteria = session.createCriteria(Wire.class).
+				add(Restrictions.eq("idFamily", idFamily)).
+				add(Restrictions.eq("nameWire",nameWire));
 		wire = (Wire) criteria.uniqueResult();
+	
 		
 		session.getTransaction().commit();
 		session.close();
@@ -93,15 +119,41 @@ public class WireService {
 		return wire;
 	}
 	
-	public void removeWireByNameWire(int idFamily,String nameWire){
+
+	public void removeAllWires(){
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		criteria = session.createCriteria(Wire.class).add(Restrictions.eq("idFamily",idFamily)).add(Restrictions.eq("nameWire",nameWire));
-		wire = (Wire) criteria.uniqueResult();
+		criteria = session.createCriteria(Wire.class);
+		wires = (ArrayList<Wire>) criteria.list();
 		
-		session.delete(wire);
+		for(Wire wire : wires)	session.delete(wire);
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	public void removeAllWiresByIdFamily(int idFamily){
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		criteria = session.createCriteria(Wire.class).add(Restrictions.eq("idFamily",idFamily));
+		wires = (ArrayList<Wire>) criteria.list();
+		
+		for(Wire wire : wires) session.delete(wire);
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	public void removeAllWiresByIdPartNumber(int idPartNumber){
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		criteria = session.createCriteria(Wire.class).add(Restrictions.eq("idPartNumber",idPartNumber));
+		wires = (ArrayList<Wire>) criteria.list();
+		for(Wire wire : wires)	session.delete(wire);
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -129,19 +181,23 @@ public class WireService {
 		return wire;
 	}
 	
-	public void removeAllWiresByIdFamily(int idFamily){
+	public Wire removeWire(int idFamily,String nameWire){
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		criteria = session.createCriteria(Wire.class).add(Restrictions.eq("idFamily",idFamily));
-		wires = (ArrayList<Wire>) criteria.uniqueResult();
-		for(Wire wire : wires)
-
-		session.delete(wire);
+		criteria = session.createCriteria(Wire.class).
+				add(Restrictions.eq("idFamily", idFamily)).
+				add(Restrictions.eq("nameWire",nameWire));
+		wire = (Wire) criteria.uniqueResult();
+		
+		session.delete(wire);		
 		session.getTransaction().commit();
 		session.close();
+		return wire;
 	}
+	
+	
 
 }
 

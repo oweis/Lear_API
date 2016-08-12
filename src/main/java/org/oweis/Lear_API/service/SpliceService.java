@@ -93,6 +93,35 @@ public class SpliceService {
 		session.close();
 		return splice;
 }
+	
+	public ArrayList<Splice> removeAllSplices(){
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		criteria = session.createCriteria(Splice.class);
+		splices = (ArrayList<Splice>) criteria.list();
+		for(Splice splice : splices) session.delete(splice);
+		
+		session.getTransaction().commit();
+		session.close();
+		return splices;
+	}
+	
+	public ArrayList<Splice> removeAllSplicesByIdFamily(int idFamily){
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		criteria = session.createCriteria(Splice.class).add(Restrictions.eqOrIsNull("idFamily",idFamily));
+		splices = (ArrayList<Splice>) criteria.list();
+		for(Splice splice : splices) session.delete(splice);
+		
+		session.getTransaction().commit();
+		session.close();
+		return splices;
+	}
+	
 	public Splice removeSplice(Splice splice){
 		session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -116,12 +145,12 @@ public class SpliceService {
 		return splice;
 	}
 	
-	public Splice removeSplice(String nameSplice){
+	public Splice removeSplice(int idFamily,String nameSplice){
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		criteria = session.createCriteria(Splice.class).add(Restrictions.eq("nameSplice",nameSplice));
+		criteria = session.createCriteria(Splice.class).add(Restrictions.eq("idFamily",idFamily)).add(Restrictions.eq("nameSplice",nameSplice));
 		splice = (Splice) criteria.uniqueResult();
 		
 		session.delete(splice);

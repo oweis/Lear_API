@@ -1,5 +1,7 @@
 package org.oweis.Lear_API.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +15,7 @@ public class Wire {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private int idFamily;
-	private String partNumberName;
+	private int idPartNumber;
 	private String nameWire;
 	private String color;
 	private String connector_A;
@@ -24,24 +26,38 @@ public class Wire {
 	private String pin_B;
 	private String color_B;
 	private String splice_B;
+	private Date date_creation = new Date();
 
 
+	public Date getDate_creation() {
+		return date_creation;
+	}
 
-	public Wire(int id,int idFamily,String partNumberName, String nameWire, String color, String connector_A,
-			String pin_A, String color_A, String connector_B, String pin_B,
-			String color_B) {
+	public void setDate_creation(Date date_creation) {
+		this.date_creation = date_creation;
+	}
+
+	public Wire() {
+		// TODO Auto-generated constructor stub
+	}
+	
+		public Wire(int id,int idFamily,int idPartNumber, String nameWire, String color, String connector_A,
+			String pin_A, String color_A,String splice_A, String connector_B, String pin_B,
+			String color_B,String splice_B) {
 		this.id = id;
 		this.idFamily = idFamily;
+		this.idPartNumber = idPartNumber;
 		this.nameWire = nameWire;
 		this.color = color;
 		this.connector_A = connector_A;
 		this.pin_A = pin_A;
 		this.color_A = color_A;
+		this.splice_A = splice_A;
 		this.connector_B = connector_B;
 		this.pin_B = pin_B;
 		this.color_B = color_B;
-		this.partNumberName = partNumberName;
-	}
+		this.splice_B = splice_B;
+		}
 
 	public int getIdFamily() {
 		return idFamily;
@@ -49,10 +65,6 @@ public class Wire {
 
 	public void setIdFamily(int idFamily) {
 		this.idFamily = idFamily;
-	}
-
-	public Wire() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getSplice_A() {
@@ -71,12 +83,12 @@ public class Wire {
 		this.splice_B = splice_B;
 	}
 
-	public String getPartNumberName() {
-		return partNumberName;
+	public int getIdPartNumber() {
+		return idPartNumber;
 	}
 
-	public void setPartNumberName(String partNumberName) {
-		this.partNumberName = partNumberName;
+	public void setIdPartNumber(int idPartNumber) {
+		this.idPartNumber = idPartNumber;
 	}
 
 	public int getId() {

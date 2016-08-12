@@ -22,7 +22,7 @@ public class FixtureService {
 	
 	public FixtureService(){}		
 
-	public ArrayList<Fixture> getAllFixture(){
+	public ArrayList<Fixture> getAllFixtures(){
 		fixtures =  new ArrayList<>();
 		session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -30,13 +30,25 @@ public class FixtureService {
 		fixtures = (ArrayList<Fixture>) criteria.list();
 		return fixtures;
 	}
+	
+	public ArrayList<Fixture> getAllFixturesByIdFamily(int idFamily){
 		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		criteria = session.createCriteria(Fixture.class).add(Restrictions.eq("idFamily",idFamily));
+		fixtures = (ArrayList<Fixture>) criteria.list();
+		
+		session.getTransaction().commit();
+		session.close();
+		return fixtures;
+	}
+	
 	public Fixture getFixture(int id){
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-
 		fixture = (Fixture) session.get(Fixture.class, id);
 		
 		session.getTransaction().commit();
@@ -45,12 +57,14 @@ public class FixtureService {
 	}
 	
 	
-	public Fixture getFixture(String name){
+	public Fixture getFixtureByNameFixture(int idFamily,String nameFixture){
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		criteria = session.createCriteria(Fixture.class).add(Restrictions.eq("name",name));
+		criteria = session.createCriteria(Fixture.class).
+				add(Restrictions.eq("idFamily",idFamily)).
+				add(Restrictions.eq("nameFixture",nameFixture));
 		fixture = (Fixture) criteria.uniqueResult();
 		
 		session.getTransaction().commit();
@@ -80,7 +94,35 @@ public class FixtureService {
 		session.getTransaction().commit();
 		session.close();
 		return fixture;
-}
+	}
+	
+	public Fixture removeAllFixtures(){
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		criteria = session.createCriteria(Fixture.class);
+		fixtures = (ArrayList<Fixture>) criteria.list();
+		
+		for(Fixture fixture : fixtures) session.delete(fixture);
+		session.getTransaction().commit();
+		session.close();
+		return fixture;
+	}
+	
+	public Fixture removeAllFixturesByIdFamily(int idFamily){
+		
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		criteria = session.createCriteria(Fixture.class).add(Restrictions.eq("idFamily",idFamily));
+		fixtures = (ArrayList<Fixture>) criteria.list();
+		
+		for(Fixture fixture : fixtures) session.delete(fixture);
+		session.getTransaction().commit();
+		session.close();
+		return fixture;
+	}
 	
 	public Fixture removeFixture(int id){
 		session = sessionFactory.openSession();
@@ -94,12 +136,12 @@ public class FixtureService {
 		return fixture;
 	}
 
-	public Fixture removeFixture(String name){
+	public Fixture removeFixture(int idFamily,String nameFixture){
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		criteria = session.createCriteria(Fixture.class).add(Restrictions.eq("name",name));
+		criteria = session.createCriteria(Fixture.class).add(Restrictions.eq("idFamily",idFamily)).add(Restrictions.eq("nameFixture",nameFixture));
 		fixture = (Fixture) criteria.uniqueResult();
 		
 		session.delete(fixture);
