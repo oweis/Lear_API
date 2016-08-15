@@ -1,7 +1,10 @@
 package org.oweis.Lear_API.resource;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.oweis.Lear_API.model.Fixture;
+import org.oweis.Lear_API.model.PartNumber;
 import org.oweis.Lear_API.model.Wire;
 import org.oweis.Lear_API.service.WireService;
 
@@ -36,6 +39,7 @@ public class WireResource {
 	public List<Wire> getAllWiresByIdPartNumber(@PathParam("idPartNumber") int idPartNumber){
 		return wireService.getAllWiresByIdPartNumber(idPartNumber);
 	}
+
 	
 	@GET
 	@Path("/search/idFamily/{idFamily}/nameWire/{nameWire}")
@@ -55,6 +59,7 @@ public class WireResource {
 	}
 	
 	@DELETE
+	@Path("/delete")
 	public void removeAllWires(){
 		wireService.removeAllWires();
 	}

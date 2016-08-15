@@ -76,7 +76,8 @@ public class FamilyService {
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		criteria = session.createCriteria(Family.class).add(Restrictions.eq("namePassByUser",namePassByUser ));
-		family = (Family) criteria.uniqueResult();
+		//family = (Family) criteria.uniqueResult();
+		family = (Family) criteria.list().get(0);
 		session.getTransaction().commit();
 		session.close();
 		return family;

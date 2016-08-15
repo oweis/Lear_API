@@ -13,17 +13,17 @@ public class Fixture {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private int idFamily;
-	private String name;
+	private String nameFixture;
 	private String drawing;
 	
 	public Fixture() {
 		
 	}
 	
-	public Fixture(int id,int idFamily, String name, String drawing) {
+	public Fixture(int id,int idFamily, String nameFixture, String drawing) {
 		this.id = id;
 		this.idFamily = idFamily;
-		this.name = name;
+		this.nameFixture = nameFixture;
 		this.drawing = drawing;
 	}
 	
@@ -43,12 +43,12 @@ public class Fixture {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNameFixture() {
+		return nameFixture;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNameFixture(String nameFixture) {
+		this.nameFixture = nameFixture;
 	}
 
 	public String getDrawing() {

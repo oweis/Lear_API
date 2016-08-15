@@ -16,7 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/splices")
-@Consumes(MediaType.APPLICATION_JSON)
+//@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class SpliceResource {
 	private SpliceService spliceService = new SpliceService();
@@ -59,6 +59,7 @@ public class SpliceResource {
 	}
 	
 	@DELETE 
+	@Path("/delete")
 	public void removeAllSplices(){
 		 spliceService.removeAllSplices();
 	}

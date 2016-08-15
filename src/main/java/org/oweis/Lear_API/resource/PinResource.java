@@ -57,7 +57,8 @@ public class PinResource {
 	}
 	
 
-	@DELETE 
+	@DELETE
+	@Path("/delete")
 	public void removeAllPins(){
 		 pinService.removeAllPins();
 	}

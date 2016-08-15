@@ -16,11 +16,14 @@ public class WireService {
 	ArrayList<Wire> wires;
 	
 	
-	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+	SessionFactory sessionFactory;
+	
 	Session session;
 	Criteria criteria;
 	
-	public WireService(){}		
+	public WireService(){
+		sessionFactory = new Configuration().configure().buildSessionFactory();
+		}		
 
 	public ArrayList<Wire> getAllWire(){
 		wires =  new ArrayList<>();

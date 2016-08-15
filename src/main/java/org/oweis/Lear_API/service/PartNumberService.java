@@ -53,12 +53,12 @@ public class PartNumberService {
 		return partNumber;
 	}
 	
-	public PartNumber getPartNumberByNamePartNumber(int idFamily,String partNumberName){
+	public PartNumber getPartNumberByNameUsedInLear(int idFamily,String nameUsedInLear){
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 	
-		criteria = session.createCriteria(PartNumber.class).add(Restrictions.eq("idFamily",idFamily)).add(Restrictions.eq("nameUsedInLear", partNumberName));		
+		criteria = session.createCriteria(PartNumber.class).add(Restrictions.eq("idFamily",idFamily)).add(Restrictions.eq("nameUsedInLear", nameUsedInLear));		
 		partNumber = (PartNumber) criteria.uniqueResult();
 		
 		session.getTransaction().commit();

@@ -38,9 +38,9 @@
 	}
 	
 	@GET
-	@Path("/search/idFamily/{idFamily}/namePartNumber/{namePartNumber}")
-	public PartNumber getPartNumberByNamePartNumber(@PathParam("idFamily") int idFamily,@PathParam("namePartNumber") String namePartNumber){
-		return partNumberService.getPartNumberByNamePartNumber(idFamily,namePartNumber);		
+	@Path("/search/idFamily/{idFamily}/nameUsedInLear/{nameUsedInLear}")
+	public PartNumber getPartNumberByNameUsedInLear(@PathParam("idFamily") int idFamily,@PathParam("nameUsedInLear") String nameUsedInLear){
+		return partNumberService.getPartNumberByNameUsedInLear(idFamily,nameUsedInLear);		
 	}
 	
 	@POST

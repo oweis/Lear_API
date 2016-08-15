@@ -6,6 +6,11 @@
 <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/leardb</property>
+	
+		<property name="hibernate.connection.verifyServerCertificate">false</property>
+    	<property name="hibernate.connection.requireSSL">true</property>
+    	<property name="hibernate.connection.autoReconnect">true</property>
+    
 <property name="hibernate.connection.username">root</property>
 <property name="hibernate.connection.password"></property>
 
@@ -30,9 +35,9 @@
 
 <!-- Classes -->
 <mapping class="org.oweis.Lear_API.model.Family"/>
-<mapping class="org.oweis.Lear_API.model.Fixture_Pn"/>
 <mapping class="org.oweis.Lear_API.model.Fixture"/>
 <mapping class="org.oweis.Lear_API.model.PartNumber"/>
+<mapping class="org.oweis.Lear_API.model.Pin"/>
 <mapping class="org.oweis.Lear_API.model.Splice"/>
 <mapping class="org.oweis.Lear_API.model.Wire"/>
 </session-factory>
