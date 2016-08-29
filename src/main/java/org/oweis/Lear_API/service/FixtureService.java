@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.oweis.Lear_API.model.Fixture;
+import org.oweis.Lear_API.model.PartNumber_Fixture;
 import org.oweis.Lear_API.model.Wire;
 import org.oweis.Lear_API.resource.FixtureResource;
 
@@ -153,9 +154,25 @@ public class FixtureService {
 		return fixture;
 	}
 	
+	
+	public ArrayList<Fixture> getAllFixturesByIdPartNumber(int idPartNumber){
+		
+		PartNumber_FixtureService partNumber_FixtureService = new PartNumber_FixtureService();
+		
+		ArrayList<PartNumber_Fixture> partNumber_Fixtures = partNumber_FixtureService.getAllPartNumber_FixturesByIdPartNumber(idPartNumber);
+		ArrayList<Fixture> fixtures = new ArrayList<Fixture>();
+		Fixture fixture = new Fixture();
+		for(PartNumber_Fixture partNumber_Fixture : partNumber_Fixtures){
+			int idFixture = partNumber_Fixture.getIdFixture();
+			fixture = getFixture(idFixture);
+			fixtures.add(fixture);
+		}
+		return fixtures;	
+	}
+	
 	//	Functions Serve the same purpose
 	//	<Section : find fixtures used in a partnumber> 
-	public ArrayList<Fixture> getAllFixturesByIdPartNumber(int idFamily,int idPartNumber){
+	public ArrayList<Fixture> getHardAllFixturesByIdPartNumber(int idFamily,int idPartNumber){
 		ArrayList<Fixture> fixtures = new ArrayList<Fixture>();
 		Fixture fixture = new Fixture();
 		List<String> nameFixtures = getAllNameFixturesByIdPartNumber(idPartNumber);
@@ -163,9 +180,9 @@ public class FixtureService {
 			fixture = this.getFixtureByNameFixture(idFamily, nameFixture);
 			fixtures.add(fixture);
 		}
-		return fixtures;
-		
+		return fixtures;	
 	}
+	
 	public List<String> getAllNameFixturesByIdPartNumber(int idPartNumber){
 		WireService wireService = new WireService();
 		//if namefixture in wire with idPartNumber=x then fixture used in partnumber with id=x
@@ -190,6 +207,7 @@ public class FixtureService {
 	
 		public ArrayList<String>  getNameConnectorsByIdWire(int idWire){
 			ArrayList<String> nameConnectors = new ArrayList<String>();
+	
 			WireService wireService = new WireService();
 			Wire wire =  wireService.getWire(idWire);
 			nameConnectors.add(wire.getConnector_A());
@@ -197,11 +215,13 @@ public class FixtureService {
 			return nameConnectors;
 		}
 		
-		public void checkExistThenAdd(List<String> nameFixtures,String newName){
+	public void checkExistThenAdd(List<String> nameFixtures,String newName){
 			if (!newName.equals("") & !nameFixtures.contains(newName))
 				nameFixtures.add(newName);
 		}
 	//	</Section : find fixtures used in a partnumber> 
 		
+	
+
 }
 

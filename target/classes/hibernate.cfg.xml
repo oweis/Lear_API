@@ -36,6 +36,7 @@
 <mapping class="org.oweis.Lear_API.model.Family"/>
 <mapping class="org.oweis.Lear_API.model.Fixture"/>
 <mapping class="org.oweis.Lear_API.model.PartNumber"/>
+<mapping class="org.oweis.Lear_API.model.PartNumber_Fixture"/>
 <mapping class="org.oweis.Lear_API.model.Pin"/>
 <mapping class="org.oweis.Lear_API.model.Splice"/>
 <mapping class="org.oweis.Lear_API.model.Wire"/>

@@ -39,10 +39,18 @@ public class FixtureResource {
 	}
 
 	@GET
-	@Path("/search/idFamily/{idFamily}/idPartNumber/{idPartNumber}")
-	public List<Fixture> getAllFixturesByIdPartNumber(@PathParam("idFamily") int idFamily,@PathParam("idPartNumber") int idPartNumber){
-		return  fixtureService.getAllFixturesByIdPartNumber(idFamily,idPartNumber);
+	@Path("/search/hard/idFamily/{idFamily}/idPartNumber/{idPartNumber}")
+	public List<Fixture> getHardAllFixturesByIdPartNumber(@PathParam("idFamily") int idFamily,@PathParam("idPartNumber") int idPartNumber){
+		return  fixtureService.getHardAllFixturesByIdPartNumber(idFamily,idPartNumber);
 	}
+	
+
+	@GET
+	@Path("/search/idPartNumber/{idPartNumber}")
+	public List<Fixture> getAllFixturesByIdPartNumber(@PathParam("idPartNumber") int idPartNumber){
+		return fixtureService.getAllFixturesByIdPartNumber(idPartNumber);
+	}	
+	
 
 	@GET
 	@Path("/search/idFixture/{idFixture}")

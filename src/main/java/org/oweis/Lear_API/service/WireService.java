@@ -23,10 +23,13 @@ public class WireService {
 	
 	public WireService(){
 		sessionFactory = new Configuration().configure().buildSessionFactory();
+	
+
 		}		
 
 	public ArrayList<Wire> getAllWire(){
 		wires =  new ArrayList<>();
+		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 
