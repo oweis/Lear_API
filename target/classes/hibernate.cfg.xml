@@ -17,6 +17,7 @@
 <!--  false : will not print query in your console -->
 <property name="hibernate.show_sql">true</property>
 
+
 <!--  create : hibernate will drop all your schema and start from scratch -->
 <!--  update : hibernate will keep old schema and add new anything new -->
 <property name="hibernate.hbm2ddl.auto">update</property>

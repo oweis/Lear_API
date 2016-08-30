@@ -12,7 +12,7 @@ import java.util.Date;
 public class Family {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String namePassByUser;
 	private String nameUsedInLear;

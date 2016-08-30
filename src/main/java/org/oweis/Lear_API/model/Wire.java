@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Wire {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private int idFamily;
 	private int idPartNumber;

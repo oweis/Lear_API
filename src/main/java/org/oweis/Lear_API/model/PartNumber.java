@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class PartNumber {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private int idFamily;
 	private String nameUsedInLear;

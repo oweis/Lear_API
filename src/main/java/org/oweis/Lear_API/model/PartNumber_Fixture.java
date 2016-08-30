@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class PartNumber_Fixture {
 
 		@Id
-		@GeneratedValue(strategy=GenerationType.AUTO)
+		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		int id;
 		int idPartNumber;
 		int idFixture;

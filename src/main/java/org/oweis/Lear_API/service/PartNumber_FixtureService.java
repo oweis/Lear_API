@@ -17,47 +17,46 @@ public class PartNumber_FixtureService {
 
 	PartNumber_Fixture partNumber_Fixture;
 	ArrayList<PartNumber_Fixture> partNumber_Fixtures;
-	SessionFactory sessionFactory;
 	Session session;
 	Criteria criteria;
 	
 	public PartNumber_FixtureService() {
-		sessionFactory = new Configuration().configure().buildSessionFactory();
+		if(!ConnexionService.open){
+		ConnexionService.openConnexion();
+		}
+		this.session = ConnexionService.session;
+		
 	}
 	
 	public ArrayList<PartNumber_Fixture> getAllPartNumber_FixturesByIdPartNumber(int idPartNumber){
 		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
 		
 		criteria = session.createCriteria(PartNumber_Fixture.class).
 				add(Restrictions.eq("idPartNumber", idPartNumber));
 		
 		partNumber_Fixtures = (ArrayList<PartNumber_Fixture>) criteria.list();
-		
-		session.getTransaction().commit();
-		session.close();
+		  session.flush();
+	        session.clear();
+
 		return partNumber_Fixtures;
 	}
 	
 	public PartNumber_Fixture getPartNumber_Fixture(int id){
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+
 		partNumber_Fixture = (PartNumber_Fixture) session.get(PartNumber_Fixture.class,id);				
-		session.getTransaction().commit();
-		session.close();
+		  session.flush();
+	        session.clear();
+		
 		return partNumber_Fixture;
 	}
 
 	public PartNumber_Fixture addPartNumber_Fixture(PartNumber_Fixture partNumber_Fixture){
 
-		session = sessionFactory.openSession();
-		session.beginTransaction();
 
 		session.save(partNumber_Fixture);
-
-		session.getTransaction().commit();
-		session.close();
+		  session.flush();
+	        session.clear();
+		
 		
 		return partNumber_Fixture;
 	}

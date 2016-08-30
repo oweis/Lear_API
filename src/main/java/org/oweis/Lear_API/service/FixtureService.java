@@ -5,13 +5,10 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.oweis.Lear_API.model.Fixture;
 import org.oweis.Lear_API.model.PartNumber_Fixture;
 import org.oweis.Lear_API.model.Wire;
-import org.oweis.Lear_API.resource.FixtureResource;
 
 public class FixtureService {
 	
@@ -19,16 +16,18 @@ public class FixtureService {
 	ArrayList<Fixture> fixtures;
 	
 	
-	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	Session session;
 	Criteria criteria;
 	
-	public FixtureService(){}		
+	public FixtureService(){
+		if(!ConnexionService.open){
+		ConnexionService.openConnexion();
+		}
+		this.session = ConnexionService.session;
+	}		
 
 	public ArrayList<Fixture> getAllFixtures(){
 		fixtures =  new ArrayList<>();
-		session = sessionFactory.openSession();
-		session.beginTransaction();
 		criteria = session.createCriteria(Fixture.class);
 		fixtures = (ArrayList<Fixture>) criteria.list();
 		return fixtures;
@@ -36,121 +35,106 @@ public class FixtureService {
 	
 	public ArrayList<Fixture> getAllFixturesByIdFamily(int idFamily){
 		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+
 		
 		criteria = session.createCriteria(Fixture.class).add(Restrictions.eq("idFamily",idFamily));
 		fixtures = (ArrayList<Fixture>) criteria.list();
-		
-		session.getTransaction().commit();
-		session.close();
+		  session.flush();
+	        session.clear();
+
 		return fixtures;
 	}
 	
 	public Fixture getFixture(int id){
 		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
 		
 		fixture = (Fixture) session.get(Fixture.class, id);
-		
-		session.getTransaction().commit();
-		session.close();
+		  session.flush();
+	        session.clear();
+	
 		return fixture;
 	}
 	
 	
 	public Fixture getFixtureByNameFixture(int idFamily,String nameFixture){
-		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-		
+
 		criteria = session.createCriteria(Fixture.class).
 				add(Restrictions.eq("idFamily",idFamily)).
 				add(Restrictions.eq("nameFixture",nameFixture));
 		fixture = (Fixture) criteria.uniqueResult();
+		  session.flush();
+	        session.clear();
 		
-		session.getTransaction().commit();
-		session.close();
 		return fixture;
 	}
 	
 	public Fixture addFixture(Fixture fixture){
 		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
 
 		session.save(fixture);
-
-		session.getTransaction().commit();
-		session.close();	
-		
+		  session.flush();
+	        session.clear();
+	
 		return fixture;
 	}
 	
 	public Fixture updateFixture(Fixture fixture){
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-
-		session.update(fixture);
 		
-		session.getTransaction().commit();
-		session.close();
+		session.update(fixture);
+		  session.flush();
+	        session.clear();
+
 		return fixture;
 	}
 	
 	public Fixture removeAllFixtures(){
 		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+		
 		
 		criteria = session.createCriteria(Fixture.class);
 		fixtures = (ArrayList<Fixture>) criteria.list();
 		
-		for(Fixture fixture : fixtures) session.delete(fixture);
-		session.getTransaction().commit();
-		session.close();
+		for(Fixture fixture : fixtures){ session.delete(fixture);
+		  session.flush();
+	        session.clear();}
+		
 		return fixture;
 	}
 	
 	public Fixture removeAllFixturesByIdFamily(int idFamily){
 		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
+	
 		
 		criteria = session.createCriteria(Fixture.class).add(Restrictions.eq("idFamily",idFamily));
 		fixtures = (ArrayList<Fixture>) criteria.list();
 		
-		for(Fixture fixture : fixtures) session.delete(fixture);
-		session.getTransaction().commit();
-		session.close();
+		for(Fixture fixture : fixtures){ session.delete(fixture);
+		  session.flush();
+	        session.clear();
+		}
 		return fixture;
 	}
 	
 	public Fixture removeFixture(int id){
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-
+	
 		fixture = (Fixture) session.get(Fixture.class,id);
 		session.delete(fixture);
-		
-		session.getTransaction().commit();
-		session.close();
+		  session.flush();
+	        session.clear();
+
 		return fixture;
 	}
 
 	public Fixture removeFixture(int idFamily,String nameFixture){
 		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-		
+
 		criteria = session.createCriteria(Fixture.class).add(Restrictions.eq("idFamily",idFamily)).add(Restrictions.eq("nameFixture",nameFixture));
 		fixture = (Fixture) criteria.uniqueResult();
 		
 		session.delete(fixture);
-		
-		session.getTransaction().commit();
-		session.close();
+		  session.flush();
+	        session.clear();
+	
 		return fixture;
 	}
 	

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Pin {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private int idFamily;
 	private int idFixture;
