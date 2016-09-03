@@ -13,10 +13,7 @@ import org.oweis.Lear_API.model.Wire;
 public class WireService {
 	
 	Wire wire;
-	ArrayList<Wire> wires;
-	
-	
-	
+	ArrayList<Wire> wires;	
 	Session session;
 	Criteria criteria;
 	
@@ -25,7 +22,6 @@ public class WireService {
 		ConnexionService.openConnexion();
 		}
 		this.session = ConnexionService.session;
-
 		}		
 
 	public ArrayList<Wire> getAllWire(){
@@ -53,29 +49,25 @@ public class WireService {
 	}
 	
 	public ArrayList<Wire> getAllWiresByIdPartNumber(int idPartNumber){
-
 		
 		criteria = session.createCriteria(Wire.class).
 				add(Restrictions.eq("idPartNumber", idPartNumber)).
 				addOrder(Order.desc("date_creation"));
 		
 		wires = (ArrayList<Wire>) criteria.list();
-		  session.flush();
-	        session.clear();
-
+		session.flush();
+	    session.clear();
 		return wires;
 	}
 	
 	public ArrayList<Wire> getAllWiresByIdPartNumberAdapt(int idPartNumber){
+		
 		ArrayList<Wire> wires = this.getAllWiresByIdPartNumber(idPartNumber);
 		AdaptWires adaptWires = new AdaptWires(wires);
-		
 		return adaptWires.updateWiresList();
 	}
 	
 	public Wire getWire(int id){
-		
-		
 
 		wire = (Wire) session.get(Wire.class, id);
 		  session.flush();
