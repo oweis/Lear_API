@@ -14,9 +14,7 @@ import org.oweis.Lear_API.model.Wire;
 public class SpliceService {
 	
 	Splice splice;
-	ArrayList<Splice> splices;
-	
-	
+	ArrayList<Splice> splices;	
 	Session session;
 	Criteria criteria;
 	

@@ -29,7 +29,7 @@ public class PartNumberService {
 	public ArrayList<PartNumber> getAllPartNumbers(){
 		partNumbers =  new ArrayList<>();
 		
-		criteria = session.createCriteria(PartNumber.class).addOrder(Order.desc("date_creation"));
+		criteria = session.createCriteria(PartNumber.class);
 		partNumbers = (ArrayList<PartNumber>) criteria.list();
 		return partNumbers;
 	}
@@ -37,7 +37,7 @@ public class PartNumberService {
 	public ArrayList<PartNumber> getAllPartNumbersByIdFamily(int idFamily){
 		partNumbers =  new ArrayList<>();
 	
-		criteria = session.createCriteria(PartNumber.class).add(Restrictions.eq("idFamily", idFamily)).addOrder(Order.desc("date_creation"));
+		criteria = session.createCriteria(PartNumber.class).add(Restrictions.eq("idFamily", idFamily));
 		partNumbers = (ArrayList<PartNumber>) criteria.list();
 		return partNumbers;
 	}
@@ -100,7 +100,7 @@ public class PartNumberService {
 	public ArrayList<PartNumber> removeAllPartNumbersByIdFamily(int idFamily){
 		partNumbers =  new ArrayList<>();
 	
-		criteria = session.createCriteria(PartNumber.class).add(Restrictions.eq("idFamily", idFamily)).addOrder(Order.desc("date_creation"));
+		criteria = session.createCriteria(PartNumber.class).add(Restrictions.eq("idFamily", idFamily));
 		partNumbers = (ArrayList<PartNumber>) criteria.list();
 		
 		for(PartNumber partNumber : partNumbers) {session.delete(partNumber);

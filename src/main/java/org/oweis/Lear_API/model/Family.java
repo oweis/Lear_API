@@ -19,20 +19,19 @@ public class Family {
 	private String nameUsedInClient;
 	private String date;
 	private String client;
-	private String extra;
 	private Date date_creation = new Date();
 
 	public Family(){}
 
 	public Family(int id,String namePassByUser, String nameUsedInLear, String nameUsedInClient,
-			String date, String client, String extra) {
+			String date, String client) {
 		this.id = id;
 		this.namePassByUser = namePassByUser;
 		this.nameUsedInLear = nameUsedInLear;
 		this.nameUsedInClient = nameUsedInClient;
 		this.date = date;
 		this.client = client;
-		this.extra = extra;
+		
 	}
 
 	public String getNamePassByUser() {
@@ -90,13 +89,5 @@ public class Family {
 	public void setClient(String client) {
 		this.client = client;
 	}
-
-	public String getExtra() {
-		return extra;
-	}
-
-	public void setExtra(String extra) {
-		this.extra = extra;
-	};
 	
 }

@@ -2,17 +2,31 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 <session-factory>
-<!-- Database Configuration -->
+ 
+<!-- Database Configuration Real World-->
+<!-- 
 <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/leardb</property>
-	
-		<property name="hibernate.connection.verifyServerCertificate">false</property>
-    	<property name="hibernate.connection.requireSSL">true</property>
-    	<property name="hibernate.connection.autoReconnect">true</property>
-    
+<property name="hibernate.connection.url">jdbc:mysql://sql8.freesqldatabase.com/sql8134204</property> 
+<property name="hibernate.connection.username">sql8134204</property>
+<property name="hibernate.connection.password">ktQ7Z5GKuB</property>
+ -->
+ 
+ <!-- Database Configuration -->
+
+<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/leardb</property> 
 <property name="hibernate.connection.username">root</property>
 <property name="hibernate.connection.password"></property>
+
+ 
+ 
+<property name="hibernate.connection.verifyServerCertificate">false</property>
+<property name="hibernate.connection.requireSSL">true</property>
+<property name="hibernate.connection.autoReconnect">true</property>
+    
+
 
 <!--  false : will not print query in your console -->
 <property name="hibernate.show_sql">true</property>
@@ -38,7 +52,6 @@
 <mapping class="org.oweis.Lear_API.model.Fixture"/>
 <mapping class="org.oweis.Lear_API.model.PartNumber"/>
 <mapping class="org.oweis.Lear_API.model.PartNumber_Fixture"/>
-<mapping class="org.oweis.Lear_API.model.Pin"/>
 <mapping class="org.oweis.Lear_API.model.Splice"/>
 <mapping class="org.oweis.Lear_API.model.Wire"/>
 </session-factory>

@@ -1,4 +1,4 @@
-package org.oweis.Lear_API.service;
+	package org.oweis.Lear_API.service;
 
 import java.util.ArrayList;
 
@@ -38,8 +38,7 @@ public class WireService {
 	public ArrayList<Wire> getAllWiresByIdFamily(int idFamily){
 		
 		criteria = session.createCriteria(Wire.class).
-				add(Restrictions.eq("idFamily", idFamily)).
-				addOrder(Order.desc("date_creation"));
+				add(Restrictions.eq("idFamily", idFamily));
 		
 		wires = (ArrayList<Wire>) criteria.list();
 		  session.flush();
@@ -51,8 +50,7 @@ public class WireService {
 	public ArrayList<Wire> getAllWiresByIdPartNumber(int idPartNumber){
 		
 		criteria = session.createCriteria(Wire.class).
-				add(Restrictions.eq("idPartNumber", idPartNumber)).
-				addOrder(Order.desc("date_creation"));
+				add(Restrictions.eq("idPartNumber", idPartNumber));
 		
 		wires = (ArrayList<Wire>) criteria.list();
 		session.flush();

@@ -2,11 +2,9 @@ package org.oweis.Lear_API.resource;
 
 import java.util.List;
 
-import org.oweis.Lear_API.model.Fixture;
 import org.oweis.Lear_API.model.Splice;
 import org.oweis.Lear_API.service.SpliceService;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;

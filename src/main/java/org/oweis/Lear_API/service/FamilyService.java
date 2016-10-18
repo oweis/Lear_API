@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.oweis.Lear_API.model.Family;
