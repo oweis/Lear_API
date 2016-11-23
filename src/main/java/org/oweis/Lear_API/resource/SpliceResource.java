@@ -32,9 +32,9 @@ public class SpliceResource {
 	}
 
 	@GET
-	@Path("/search/idFamily/{idFamily}/idPartNumber/{idPartNumber}")
-	public List<Splice> getAllSplicesByIdPartNumber(@PathParam("idFamily") int idFamily,@PathParam("idPartNumber") int idPartNumber){
-		return  spliceService.getAllSplicesByIdPartNumber(idFamily,idPartNumber);
+	@Path("/search/idFamily/{idFamily}/idCable/{idCable}")
+	public List<Splice> getAllSplicesByIdCable(@PathParam("idFamily") int idFamily,@PathParam("idCable") int idCable){
+		return  spliceService.getAllSplicesByIdCable(idFamily,idCable);
 	}
 	
 	@GET

@@ -7,23 +7,23 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Fixture {
+public class Connector {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private int idFamily;
-	private String nameFixture;
+	private String nameConnector;
 
 	
-	public Fixture() {
+	public Connector() {
 		
 	}
 	
-	public Fixture(int id,int idFamily, String nameFixture) {
+	public Connector(int id,int idFamily, String nameConnector) {
 		this.id = id;
 		this.idFamily = idFamily;
-		this.nameFixture = nameFixture;
+		this.nameConnector = nameConnector;
 	
 	}
 	
@@ -43,12 +43,12 @@ public class Fixture {
 		this.id = id;
 	}
 
-	public String getNameFixture() {
-		return nameFixture;
+	public String getNameConnector() {
+		return nameConnector;
 	}
 
-	public void setNameFixture(String nameFixture) {
-		this.nameFixture = nameFixture;
+	public void setNameConnector(String nameConnector) {
+		this.nameConnector = nameConnector;
 	}
 
 }

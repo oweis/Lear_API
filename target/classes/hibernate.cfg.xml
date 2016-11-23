@@ -49,9 +49,9 @@
 
 <!-- Classes -->
 <mapping class="org.oweis.Lear_API.model.Family"/>
-<mapping class="org.oweis.Lear_API.model.Fixture"/>
-<mapping class="org.oweis.Lear_API.model.PartNumber"/>
-<mapping class="org.oweis.Lear_API.model.PartNumber_Fixture"/>
+<mapping class="org.oweis.Lear_API.model.Connector"/>
+<mapping class="org.oweis.Lear_API.model.Cable"/>
+<mapping class="org.oweis.Lear_API.model.Cable_Connector"/>
 <mapping class="org.oweis.Lear_API.model.Splice"/>
 <mapping class="org.oweis.Lear_API.model.Wire"/>
 </session-factory>

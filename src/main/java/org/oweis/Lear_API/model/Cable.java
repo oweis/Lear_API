@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class PartNumber {
+public class Cable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,13 +20,11 @@ public class PartNumber {
 
 	
 	
-	public PartNumber() {
+	public Cable() {
 	
 	}
 	
-
-
-	public PartNumber(int id,int idFamily, String nameUsedInLear, String nameUsedInClient,
+	public Cable(int id,int idFamily, String nameUsedInLear, String nameUsedInClient,
 			String level, String date) {
 		
 		this.id = id;

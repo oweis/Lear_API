@@ -29,15 +29,15 @@ public class WireResource {
 	}
 	
 	@GET
-	@Path("/search/idPartNumber/{idPartNumber}")
-	public List<Wire> getAllWiresByIdPartNumber(@PathParam("idPartNumber") int idPartNumber){
-		return wireService.getAllWiresByIdPartNumber(idPartNumber);
+	@Path("/search/idCable/{idCable}")
+	public List<Wire> getAllWiresByIdCable(@PathParam("idCable") int idCable){
+		return wireService.getAllWiresByIdCable(idCable);
 	}
 
 	@GET
-	@Path("/search/adapt/idPartNumber/{idPartNumber}")
-	public List<Wire> getAllWiresByIdPartNumberAdapt(@PathParam("idPartNumber") int idPartNumber){
-		return wireService.getAllWiresByIdPartNumberAdapt(idPartNumber);
+	@Path("/search/adapt/idCable/{idCable}")
+	public List<Wire> getAllWiresByIdCableAdapt(@PathParam("idCable") int idCable){
+		return wireService.getAllWiresByIdCableAdapt(idCable);
 	}
 
 	@GET
@@ -70,9 +70,9 @@ public class WireResource {
 	}
 	
 	@DELETE
-	@Path("/delete/idPartNumber/{idPartNumber}")
-	public void removeAllWirseByIdPartNumber(@PathParam("idPartNumber") int idPartNumber){
-		wireService.removeAllWiresByIdPartNumber(idPartNumber);
+	@Path("/delete/idCable/{idCable}")
+	public void removeAllWirseByIdCable(@PathParam("idCable") int idCable){
+		wireService.removeAllWiresByIdCable(idCable);
 	}
 	
 	@DELETE 

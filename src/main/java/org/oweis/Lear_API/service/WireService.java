@@ -47,10 +47,10 @@ public class WireService {
 		return wires;
 	}
 	
-	public ArrayList<Wire> getAllWiresByIdPartNumber(int idPartNumber){
+	public ArrayList<Wire> getAllWiresByIdCable(int idCable){
 		
 		criteria = session.createCriteria(Wire.class).
-				add(Restrictions.eq("idPartNumber", idPartNumber));
+				add(Restrictions.eq("idCable", idCable));
 		
 		wires = (ArrayList<Wire>) criteria.list();
 		session.flush();
@@ -58,9 +58,9 @@ public class WireService {
 		return wires;
 	}
 	
-	public ArrayList<Wire> getAllWiresByIdPartNumberAdapt(int idPartNumber){
+	public ArrayList<Wire> getAllWiresByIdCableAdapt(int idCable){
 		
-		ArrayList<Wire> wires = this.getAllWiresByIdPartNumber(idPartNumber);
+		ArrayList<Wire> wires = this.getAllWiresByIdCable(idCable);
 		AdaptWires adaptWires = new AdaptWires(wires);
 		return adaptWires.updateWiresList();
 	}
@@ -133,10 +133,10 @@ public class WireService {
 	        session.clear();}
 	}
 	
-	public void removeAllWiresByIdPartNumber(int idPartNumber){
+	public void removeAllWiresByIdCable(int idCable){
 		
 		
-		criteria = session.createCriteria(Wire.class).add(Restrictions.eq("idPartNumber",idPartNumber));
+		criteria = session.createCriteria(Wire.class).add(Restrictions.eq("idCable",idCable));
 		wires = (ArrayList<Wire>) criteria.list();
 		for(Wire wire : wires)	{session.delete(wire);
 		  session.flush();

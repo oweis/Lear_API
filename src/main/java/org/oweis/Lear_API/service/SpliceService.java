@@ -150,10 +150,10 @@ public class SpliceService {
 
 	//	Functions Serve the same purpose
 	//	<Section : find splices used in a partnumber> 
-	public ArrayList<Splice> getAllSplicesByIdPartNumber(int idFamily,int idPartNumber){
+	public ArrayList<Splice> getAllSplicesByIdCable(int idFamily,int idCable){
 		ArrayList<Splice> splices = new ArrayList<Splice>();
 		Splice splice = new Splice();
-		List<String> nameSplices = getAllNameSplicesByIdPartNumber(idPartNumber);
+		List<String> nameSplices = getAllNameSplicesByIdCable(idCable);
 		for(String nameSplice : nameSplices) {
 			splice = this.getSpliceByNameSplice(idFamily, nameSplice);
 			splices.add(splice);
@@ -161,10 +161,10 @@ public class SpliceService {
 		return splices;
 		
 	}
-	public List<String> getAllNameSplicesByIdPartNumber(int idPartNumber){
+	public List<String> getAllNameSplicesByIdCable(int idCable){
 		WireService wireService = new WireService();
 		//if namesplice in wire with idPartNumber=x then splice used in partnumber with id=x
-		ArrayList<Wire> wires = wireService.getAllWiresByIdPartNumber(idPartNumber);
+		ArrayList<Wire> wires = wireService.getAllWiresByIdCable(idCable);
 		//get wires ids, to make it easy to find nameSplice
 		List<Integer> listIdWires = new ArrayList<>();
 	
